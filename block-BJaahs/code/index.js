@@ -1,43 +1,15 @@
-// let user1 = "Arya";
-// let user1Score = 0;
 
-// function increaseScore(value =1){
-//     user1Score = user1Score + value;
-//     return user1Score;
-// }
-
-// function decreaseScore(value =1){
-//     user1Score = user1Score - value;
-//     return user1Score;
-// }
-
-// function usernameChange(name){
-//     user1 = name;
-//     return user1;
-// }
-
-// let user2 = {
-//     name: "John",
-//     sore: 0,
-//     increaseScore(value =1){
-//         user2.score = user2.score + value;
-//         return user2.score;
-//     },
-//     decreaseScore(value=1){
-//         user2.score = user2.score - value;
-//         return user2.score;
-//     },
-//     usernameChange(name){
-//         user2.name = name;
-//         return user2.name;
-//     }
 
 
 // }
+// const testData = {
+//     title: 'Where is the capital of Jordan',
+//     options: ['Tashkent', 'Amaan', 'Kuwait City', 'Nairobi'],
+//     correctAnswerIndex: 1,
 
 
-let title = "";
-let options = [];
+let title = 'Where is the capital of Jordan';
+let options = ['Tashkent', 'Amaan', 'Kuwait City', 'Nairobi'];
 let correctANswerIndex = 1;
 
 function isAnswerCorrect(index){
@@ -53,11 +25,11 @@ function getCorrectANswer(){
 }
 
 let quiz ={
-    title: "",
-    options:[],
+    title: 'Where is the capital of Jordan',
+    options:['Tashkent', 'Amaan', 'Kuwait City', 'Nairobi'],
     correctANswerIndex:1,
     isAnswerCorrect(index){
-        if(correctANswerIndex == index){
+        if(quiz.correctANswerIndex == index){
             return true;
         }
         else{
@@ -65,6 +37,39 @@ let quiz ={
         }
     },
     getCorrectANswer(){
-        return options[correctANswerIndex];
+        return quiz.options[quiz.correctANswerIndex];
     }
 }
+
+function createQuiz(title,options,correctIndex){
+    let quiz = {};
+    quiz.title = title;
+    quiz.options = options;
+    quiz.correctANswerIndex = correctIndex;
+    quiz.isAnswerCorrect = function(index){
+        return quiz.correctANswerIndex ===index;
+    }
+    quiz.getCorrectANswer = function(){
+        return quiz.options[quiz.correctANswerIndex];
+    }
+    return quiz;
+}
+
+function createQuiz(title,options,correctIndex){
+    let quiz = {};
+    quiz.title = title;
+    quiz.options = options;
+    quiz.correctANswerIndex = correctIndex;
+    quiz.isAnswerCorrect = function(index){
+        return this.correctANswerIndex ===index;
+    }
+    quiz.getCorrectANswer = function(){
+        return this.options[this.correctANswerIndex];
+    }
+    return quiz;
+}
+
+
+let firstQuestion = createQuiz('Where is the capital of Jordan',['Tashkent', 'Amaan', 'Kuwait City', 'Nairobi'],1);
+
+let secondQuestion = createQuiz('Where is the capital of Australia',['Canberra', 'Sydney', 'Kuwait City', 'Melbourne'],0)
