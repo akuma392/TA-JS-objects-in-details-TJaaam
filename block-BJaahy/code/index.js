@@ -53,56 +53,86 @@
 //     get width(){
 //         return this._side;
 //     }
-//     set height(side){
-//         let height = this._side;
+// //     set height(side){
+// //         let height = this._side;
+// //     }
+// //     get height(){
+// //         return this._side;
+// //     }
+
+// //     description(){
+// //         alert(` the sqaure is ${this._side} X ${this._side}`)
+// //     }
+// //     calcArea(){
+// //         return this._side * this._side ;
+// //     }
+// // }
+
+// // let sq = new Square(20);
+
+// // - Create a `area` getter method using which we can get the area of the square.
+
+
+// class Square {
+//     constructor(side) {
+//       this.width = side;
+//       this.height = side;
+//       this.numberOfTimes = 0;
 //     }
-//     get height(){
-//         return this._side;
+  
+//     description() {
+//       alert(`the square is ${this.width} x ${this.height}`);
 //     }
-
-//     description(){
-//         alert(` the sqaure is ${this._side} X ${this._side}`)
+  
+//     calcArea() {
+//       return this.width * this.height;
 //     }
-//     calcArea(){
-//         return this._side * this._side ;
+//     get area() {
+//         this.numberOfTimes++;
+//       if (this.numberOfTimes >= 4) {
+//         alert(`upper limit reached`);
+//       } else {
+//         return this.width * this.height;
+//       }
 //     }
-// }
+  
+//     set area(value) {
+//       let side = Math.sqrt(value);
+//       if (Number.isInteger(side)) {
+//         this.width = side;
+//         this.height = side;
+//       } else {
+//         alert(`${value} is noit valid input`);
+//       }
+//     }
+  
+//     static isEqual(sq1, sq2) {
+//       return sq1.width * sq1.height === sq2.width * sq2.height;
+//     }
+//   }
 
-// let sq = new Square(20);
-
-// - Create a `area` getter method using which we can get the area of the square.
-
-
-class Square{
-    constructor(side){
-       this._side = side;
-
-       
+//   let square1 = new Square(30);
+  
+//   let square2 = new Square(25);
+class User {
+    constructor(firstName, lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;
     }
-
-    set width(side){
-        let width = this._side;
-        
+  
+    get fullName() {
+      return `${this.firstName} ${this.lastName}`;
     }
-    get width(){
-        return this._side;
+    set fullName(value) {
+      if (value.length < 5) {
+        alert("Full name should be more than 5 characters");
+      } else {
+        this.firstName = value.split(" ")[0];
+        this.lastName = value.split(" ")[1];
+      }
     }
-    set height(side){
-        let height = this._side;
+    nameContaines(str) {
+      return str.toLowerCase().includes(this.firstName.toLowerCase()) || str.toLowerCase().includes(this.lastName.toLowerCase());
     }
-    get height(){
-        return this._side;
-    }
-
-    description(){
-        alert(` the sqaure is ${this._side} X ${this._side}`)
-    }
-     calcArea(){
-        return this._side * this._side ;
-    }
-    get area(){
-        return this._side * this._side ;
-    }
-}
-
-let sq = new Square(30);
+  }
+let user1 = new User("Arya","Stark");
