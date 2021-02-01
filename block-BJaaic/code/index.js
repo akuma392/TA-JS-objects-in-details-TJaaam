@@ -104,14 +104,16 @@ Object.setPrototypeOf(dogMethods,animalMethod)
 
 
 function dog(name,color,location,numberOfLegs){
-    let dogGroup = Object.create(dogMethods);
+    // let dogGroup = Object.create(dogMethods);
+let obj = animal(location, numberOfLegs)
 
-    dogGroup.name =name;
-    dogGroup.color = color;
-    dogGroup.location = location;
-    dogGroup.numberOfLegs = numberOfLegs;
+Object.setPrototypeOf(obj,dogMethods);
+    obj.name =name;
+    obj.color = color;
+    // dogGroup.location = location;
+    // dogGroup.numberOfLegs = numberOfLegs;
 
-    return dogGroup;
+    return obj;
 
 }
 
