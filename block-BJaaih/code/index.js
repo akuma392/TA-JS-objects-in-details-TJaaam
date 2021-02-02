@@ -146,7 +146,36 @@ and split the array into groups the length of size. If array can't be split even
 chunk will be the remaining elements. `length` should default to 1.
 */
 
-// You code goes here
+// function chunk(number =1){
+//   let finalArr = [];
+//     let array = [...this];
+//    for(let i =0 ;i<array.length/number;i++){
+//        let arr1 =[]
+//     for(let j =0; j<number;j++){
+//         arr1.push(this.shift());
+//     }
+//     finalArr.push(arr1);
+//    }
+
+//    return finalArr;
+// }
+
+// Array.prototype.chunk =chunk;
+
+function chunk(number =1){
+  let finalArr = [];
+    let array = [...this];
+
+    let len = Math.floor(array.length/number);
+   for(let i =0 ;i<=len;i++){
+     let chunk = array.splice(0,number);
+    finalArr.push(chunk);
+   }
+
+   return finalArr.filter((elm)=> elm.length);
+}
+
+Array.prototype.chunk =chunk;
 
 // Test to check the shuffle method (It will return different output every time you call)
 console.log(num.chunk(2)); // [[1, 2], [3, 4], [2, 3], [6, 7], [7]]
