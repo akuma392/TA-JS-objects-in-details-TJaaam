@@ -91,14 +91,14 @@ var simon = new PersonConstructor();
 // Create a function `personFromConstructor` that takes as input a `name` and an `age`. When called, the function will create person objects using the `new` keyword instead of the Object.create method.
 
 function PersonFromConstructor(name, age) {
-  this.name =name;
-  this.age =age;
-  this.greet = function(){
-    console.log("Hello")
-  }
+ let obj = new PersonConstructor();
+ obj.name =name;
+ obj.age =age;
+ 
+ return obj;
 }
 
-var mike = new PersonFromConstructor('Mike', 30);
+var mike =  PersonFromConstructor('Mike', 30);
 
 // /********* Uncomment these lines to test your work! *********/
 // console.log(mike.name); // -> Logs 'Mike'
@@ -106,7 +106,14 @@ var mike = new PersonFromConstructor('Mike', 30);
 // mike.greet(); //-> Logs 'hello'
 
 /*** CHALLENGE 3 of 3 ***/
-// add code here
+function PersonConstructor() {
+  this.greet = function(){
+    console.log("hello");
+  }
+  this.introduce = function(){
+    console.log(`My name is ${this.name}`)
+  }
+}
 
 // mike.introduce(); // -> Logs 'Hi, my name is Mike'
 
@@ -169,15 +176,26 @@ function userFactory(name, score) {
   return user;
 }
 
-var adminFunctionStore = {};
+var adminFunctionStore = Object.create(userFunctionStore);
 
-Object.setPrototypeOf(adminFunctionStore,userFunctionStore);
+// Object.setPrototypeOf(adminFunctionStore,userFunctionStore);
 
 function adminFactory(name, score) {
-  // Put code here
+  let obj = userFactory(name,score);
+  Object.setPrototypeOf(obj,adminFunctionStore);
+
+  obj.type = "Admin";
+
+  return obj;
 }
 
 /* Put code here for a method called sharePublicMessage*/
+
+
+
+adminFunctionStore.sharePublicMessage = function (){
+  console.log("welcome Users");
+};
 
 var adminFromFactory = adminFactory('Eva', 5);
 
