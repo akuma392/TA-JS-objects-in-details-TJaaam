@@ -29,9 +29,47 @@ Getter
 #### Test
 
 ```js
+class Stack {
+  constructor() {
+    this.stack = [];
+  }
+  push(value) {
+    this.stack.push(value);
+    return this.stack;
+  }
+  pop() {
+    this.stack.pop();
+  }
+
+  peek(parameter = this.stack.length - 1) {
+    return this.stack[parameter];
+  }
+  reverse() {
+    return this.stack.reverse();
+  }
+
+  get length() {
+    return this.stack.length;
+  }
+
+  displayStack() {
+    return this.stack.join(" ");
+  }
+
+  isEmpty() {
+    if (this.stack.length) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+```
+
+```js
 let myStack = new Stack();
-myStack.push('One');
-myStack.push('Two');
+myStack.push("One");
+myStack.push("Two");
 console.log(myStack.length); // 2
 console.log(myStack.peek()); // "Two"
 console.log(myStack.peek(0)); // "One"
@@ -64,10 +102,45 @@ Getter
 #### Test
 
 ```js
+class Queue {
+  constructor() {
+    this.queue = [];
+  }
+
+  enqueue(value) {
+    this.queue.push(value);
+
+    // return this.queue;
+  }
+  displayQueue() {
+    return this.queue.join(" ");
+  }
+
+  get length() {
+    return this.queue.length;
+  }
+
+  peek(parameter = 0) {
+    return this.queue[parameter];
+  }
+  dequeue() {
+    this.queue.shift();
+  }
+  isEmpty() {
+    if (this.queue.length) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+```
+
+```js
 let atmQueue = new Queue();
-atmQueue.enqueue('Aman');
-atmQueue.enqueue('John');
-atmQueue.enqueue('Rohan');
+atmQueue.enqueue("Aman");
+atmQueue.enqueue("John");
+atmQueue.enqueue("Rohan");
 console.log(atmQueue.length); // 3
 console.log(atmQueue.peek()); // "Aman"
 console.log(atmQueue.peek(1)); // "John"
