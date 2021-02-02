@@ -5,6 +5,17 @@
 
 // myMap function goes here
 
+function myMap(array,cb){
+
+let finalArr = []
+
+for(let i=0 ;i<array.length;i++){
+  finalArr.push(cb(array[i]));
+}
+return finalArr;
+}
+
+
 // Test the myMap function you created above
 
 let numbers = [1, 5, 6, 8, 9];
