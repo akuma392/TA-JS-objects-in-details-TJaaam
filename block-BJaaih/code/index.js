@@ -5,16 +5,19 @@
 
 // myMap function goes here
 
-function myMap(array,cb){
 
-let finalArr = []
+function myMap(cb){
 
-for(let i=0 ;i<array.length;i++){
-  finalArr.push(cb(array[i]));
-}
-return finalArr;
-}
+  let finalArr = []
+  
+  for(let i=0 ;i<this.length;i++){
+    finalArr.push(cb(this[i]));
+  }
+  return finalArr;
+  }
+  
 
+  Array.prototype.myMap = myMap;
 
 // Test the myMap function you created above
 
@@ -39,7 +42,22 @@ console.log(capitalWords); // it should be 'Quick Brown Fox Jumped Over A Lazy D
 After adding the function test it using the code below.
 */
 
-// You code goes here
+function myFilter(cb){
+
+  let finalArr = []
+  
+  for(let i=0 ;i<this.length;i++){
+      if(cb(this[i])){
+          finalArr.push(this[i]);
+      }
+   
+  }
+  return finalArr;
+  }
+  
+
+  Array.prototype.myFilter = myFilter;
+
 
 let even = numbers.myFilter(function (num) {
   return num % 2 === 0;
@@ -60,7 +78,12 @@ Make sure it does not the changes the original array.
 
 */
 
-// You code goes here
+function shuffle(){
+
+  return this.sort(()=> Math.random() - 0.5);
+}
+
+Array.prototype.shuffle =shuffle;
 
 // Test to check the shuffle method (It will return different output every time you call)
 console.log(numbers.shuffle());
@@ -76,19 +99,42 @@ Unique means no element should come multiple times.
 
 // You code goes here
 
+function unique(){
+
+  return this.reduce((acc,cv)=>{
+      if(!acc.includes(cv)){
+          acc.push(cv);
+      }
+      return acc;
+  },[])
+};
+
+Array.prototype.unique = unique;
+
 // Test to check the shuffle method (It will return different output every time you call)
 let num = [1, 2, 3, 4, 2, 3, 6, 7, 7];
 let strings = 'helloworld'.split('');
 
 console.log(num.unique()); // [1, 2, 3, 4, 6, 7]
-console.log(strings.shuffle()); // ['h', 'e', 'l', 'o', 'w', 'r', 'd']
+console.log(strings.unique()); // ['h', 'e', 'l', 'o', 'w', 'r', 'd']
 
 /*
 5. Add a method named `intersection` to Array.prototype. The method intersection will accept an array and returns a new
 array that will contain only element that is common in both the array.
 */
 
-// You code goes here
+function intersection(array1){
+  let output =  this.filter((elm) => array1.includes(elm))
+
+  return output.reduce((acc,cv)=>{
+      if(!acc.includes(cv)){
+          acc.push(cv);
+      }
+      return acc;
+  },[])
+}
+
+Array.prototype.intersection = intersection;
 
 // Test to check the shuffle method (It will return different output every time you call)
 console.log(num.intersection([2, 7, 11, 32])); // [2, 7]
